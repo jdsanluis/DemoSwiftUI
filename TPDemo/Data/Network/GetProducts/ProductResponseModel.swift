@@ -25,7 +25,8 @@ struct RatingResponseModel: Codable {
 extension ProductResponseModel {
     
     func mapToProduct() -> Product {
-        .init(name: image,
+        .init(id: id,
+              name: title,
               price: price,
               image: image,
               rating: rating.rate,

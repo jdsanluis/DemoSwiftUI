@@ -18,11 +18,11 @@ final class AddProductToWhistListAPIImp {
         let userDefaults = UserDefaults.standard
     }
     
-    var productsInWhisList: [Product] {
-        guard let itemsInWhisList: [Product] = dependencies
+    var productsInWhisList: Data? {
+        guard let itemsInWhisList: Data = dependencies
             .userDefaults
-            .object(forKey: "WhistList") as? [Product] else {
-            return []
+            .object(forKey: "WhistList") as? Data else {
+            return nil
         }
         
         return itemsInWhisList
@@ -38,14 +38,21 @@ final class AddProductToWhistListAPIImp {
 extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
     
     func invoke(product: Product) {
-        var items = productsInWhisList
+        guard var items: Data = productsInWhisList else { return }
         
-        items.append(product)
-        
-        print("***", items)
-        
-        dependencies
-            .userDefaults
-            .set(items, forKey: "myKey")
+        do {
+            
+            var priductInWhisList: [Product] = try JSONDecoder().decode([Product].self,
+                                                                        from: items)
+            priductInWhisList.append(product)
+            
+            let encodedData = try JSONEncoder().encode(priductInWhisList)
+            
+            dependencies
+                .userDefaults
+                .set(encodedData, forKey: "WhistList")
+        } catch {
+            // Failed to encode Contact to Data
+        }
     }
 }
