@@ -11,6 +11,9 @@
 		C78F6E3B29AB1A93000F1824 /* FavoriteListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E3A29AB1A93000F1824 /* FavoriteListCellView.swift */; };
 		C78F6E3D29ABB225000F1824 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E3C29ABB225000F1824 /* ProductListViewModel.swift */; };
 		C78F6E3F29ABB98B000F1824 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E3E29ABB98B000F1824 /* FavoriteListViewModel.swift */; };
+		C78F6E4129ABC39F000F1824 /* GetProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4029ABC39F000F1824 /* GetProductsAPI.swift */; };
+		C78F6E4429ABC65F000F1824 /* ProductResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4329ABC65F000F1824 /* ProductResponseModel.swift */; };
+		C78F6E4729ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */; };
 		C7D1BB9529A97B0D007C1C8E /* TPDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1BB9429A97B0D007C1C8E /* TPDemoApp.swift */; };
 		C7D1BB9729A97B0D007C1C8E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1BB9629A97B0D007C1C8E /* ContentView.swift */; };
 		C7D1BB9929A97B10007C1C8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D1BB9829A97B10007C1C8E /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 		C78F6E3A29AB1A93000F1824 /* FavoriteListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListCellView.swift; sourceTree = "<group>"; };
 		C78F6E3C29ABB225000F1824 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		C78F6E3E29ABB98B000F1824 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
+		C78F6E4029ABC39F000F1824 /* GetProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductsAPI.swift; sourceTree = "<group>"; };
+		C78F6E4329ABC65F000F1824 /* ProductResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponseModel.swift; sourceTree = "<group>"; };
+		C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductsUseCaseGetProductUseCase.swift; sourceTree = "<group>"; };
 		C7D1BB9129A97B0D007C1C8E /* TPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D1BB9429A97B0D007C1C8E /* TPDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPDemoApp.swift; sourceTree = "<group>"; };
 		C7D1BB9629A97B0D007C1C8E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +70,23 @@
 				C78F6E3E29ABB98B000F1824 /* FavoriteListViewModel.swift */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		C78F6E4229ABC460000F1824 /* GetProducts */ = {
+			isa = PBXGroup;
+			children = (
+				C78F6E4029ABC39F000F1824 /* GetProductsAPI.swift */,
+				C78F6E4329ABC65F000F1824 /* ProductResponseModel.swift */,
+			);
+			path = GetProducts;
+			sourceTree = "<group>";
+		};
+		C78F6E4529ABCD52000F1824 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		C7D1BB8829A97B0D007C1C8E = {
@@ -115,6 +138,7 @@
 		C7D1BBA329A97B29007C1C8E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C78F6E4229ABC460000F1824 /* GetProducts */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -139,6 +163,7 @@
 		C7F9C2BF29AAEF3200C737F8 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				C78F6E4529ABCD52000F1824 /* UseCases */,
 				C7D1BBA229A97B1D007C1C8E /* Entities */,
 			);
 			path = Domain;
@@ -217,9 +242,12 @@
 				C7F9C2BB29AAC80300C737F8 /* ProductListCellView.swift in Sources */,
 				C7D1BB9729A97B0D007C1C8E /* ContentView.swift in Sources */,
 				C78F6E3929AB0021000F1824 /* FavoritesListView.swift in Sources */,
+				C78F6E4129ABC39F000F1824 /* GetProductsAPI.swift in Sources */,
 				C7F9C2BD29AAEEE500C737F8 /* Product.swift in Sources */,
 				C78F6E3B29AB1A93000F1824 /* FavoriteListCellView.swift in Sources */,
 				C7D1BB9529A97B0D007C1C8E /* TPDemoApp.swift in Sources */,
+				C78F6E4429ABC65F000F1824 /* ProductResponseModel.swift in Sources */,
+				C78F6E4729ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift in Sources */,
 				C78F6E3F29ABB98B000F1824 /* FavoriteListViewModel.swift in Sources */,
 				C78F6E3D29ABB225000F1824 /* ProductListViewModel.swift in Sources */,
 				C7F9C2B929AAC5A900C737F8 /* ProductsListView.swift in Sources */,

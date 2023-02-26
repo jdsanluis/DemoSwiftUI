@@ -8,23 +8,24 @@
 import Foundation
 
 final class ProductListViewModel: ObservableObject {
+    
+    struct Dependencies {
+        let getProductsUseCase: GetProductsUseCase = GetProductsUseCaseImp()
+    }
     @Published var products: [Product] = []
     
-    init() {
-        self.products = getProducts()
+    let dependencies: Dependencies
+    
+    init(dependencies: Dependencies = .init()) {
+        self.dependencies = dependencies
+        getProducts()
     }
     
-    private func getProducts() -> [Product] {
-        
-        //TODO: add logic to get products from API
-        return [
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description")
-        ]
+    private func getProducts() {
+        dependencies
+            .getProductsUseCase
+            .invoke(completion: { products in
+                self.products = products
+            })
     }
 }
