@@ -8,18 +8,12 @@
 import SwiftUI
 
 struct FavoritesListView: View {
-    var data: [Product] = [
-        .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-        .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-        .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-        .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-        .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-        .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description")
-    ]
+    
+    @StateObject var viewModel = FavoriteListViewModel()
     
     var body: some View {
         NavigationStack(){
-            List(data) { product in
+            List(viewModel.products) { product in
                 FavoriteListCellView(product: product)
             }.navigationTitle(Text("Whis List"))
         }
