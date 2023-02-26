@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductListCellView: View {
     
+    @EnvironmentObject var viewModel: ProductListViewModel
     private let product: Product
     
     init(product: Product) {
@@ -39,6 +40,14 @@ struct ProductListCellView: View {
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                                 .foregroundColor(.red)
+                                .gesture(
+                                    TapGesture()
+                                        .onEnded({
+                                            print("Tapped!"+product.name)
+                                            viewModel
+                                                .addProductToWhistList(product)
+                                        })
+                                )
                         }
                 }
                 .border(.green)
@@ -77,7 +86,8 @@ struct ProductListCellView: View {
 
 struct ProductListCellView_Previews: PreviewProvider {
     static var previews: some View {
-        let product: Product = .init(name: "xxx",
+        let product: Product = .init(id: 0,
+                                     name: "xxx",
                                      price: 12.4,
                                      image: "image",
                                      rating: 5.3,

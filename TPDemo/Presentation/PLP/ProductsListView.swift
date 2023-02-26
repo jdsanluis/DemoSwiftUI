@@ -22,6 +22,7 @@ struct ProductsListView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.products, id: \.self) { product in
                         ProductListCellView(product: product)
+                            .environmentObject(viewModel)
                     }
                 }
             }.navigationTitle(Text("Fake Store"))
@@ -33,5 +34,6 @@ struct ProductsListView: View {
 struct ProductsListView_Previews: PreviewProvider {
     static var previews: some View {
         ProductsListView()
+            .environmentObject(ProductListViewModel())
     }
 }

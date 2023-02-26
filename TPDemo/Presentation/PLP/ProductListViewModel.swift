@@ -11,7 +11,9 @@ final class ProductListViewModel: ObservableObject {
     
     struct Dependencies {
         let getProductsUseCase: GetProductsUseCase = GetProductsUseCaseImp()
+        let addProductToWhisListUseCase: AddProductToWhisListUseCase = AddProductToWhisListUseCaseImp()
     }
+    
     @Published var products: [Product] = []
     
     let dependencies: Dependencies
@@ -27,5 +29,11 @@ final class ProductListViewModel: ObservableObject {
             .invoke(completion: { products in
                 self.products = products
             })
+    }
+    
+    func addProductToWhistList(_ product: Product) {
+        dependencies
+            .addProductToWhisListUseCase
+            .invoke(product: product )
     }
 }

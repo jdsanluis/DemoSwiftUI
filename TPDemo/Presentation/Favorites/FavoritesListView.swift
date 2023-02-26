@@ -16,6 +16,8 @@ struct FavoritesListView: View {
             List(viewModel.products) { product in
                 FavoriteListCellView(product: product)
             }.navigationTitle(Text("Whis List"))
+        }.onAppear {
+            viewModel.getWhisList()
         }
     }
 }
