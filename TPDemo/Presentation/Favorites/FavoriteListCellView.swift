@@ -44,7 +44,8 @@ struct FavoriteListCellView: View {
 
 struct FavoriteListCellView_Previews: PreviewProvider {
     static var previews: some View {
-        let product: Product = .init(name: "xxx",
+        let product: Product = .init(id: 1,
+                                     name: "xxx",
                                      price: 12.4,
                                      image: "image",
                                      rating: 5.3,

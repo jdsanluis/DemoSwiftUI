@@ -8,23 +8,23 @@
 import Foundation
 
 final class FavoriteListViewModel: ObservableObject {
-    @Published var products: [Product] = []
     
-    init() {
-        self.products = getProducts()
+    struct Dependencies {
+        let getWhisListUseCase: GetWhisListUseCase = GetWhisListUseCaseImp()
     }
     
-    private func getProducts() -> [Product] {
-        
-        //TODO: add logic to get products from API
-        return [
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description"),
-            .init(name: "product1", price: 1235.99, image: "IMage", rating: 4.1, description: "description")
-        ]
+    @Published var products: [Product] = []
+    
+    let dependencies: Dependencies
+    
+    init(dependencies: Dependencies = .init()) {
+        self.dependencies = dependencies
+        getWhisList()
+    }
+    
+    func getWhisList() {
+        products = dependencies
+            .getWhisListUseCase
+            .invoke()
     }
 }
