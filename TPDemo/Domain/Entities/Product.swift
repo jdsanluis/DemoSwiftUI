@@ -15,4 +15,5 @@ struct Product: Identifiable, Hashable, Codable {
     let image: String
     let rating: Double
     let description: String
+    var isInWhisList: Bool
 }

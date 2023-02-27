@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 protocol AddProductToWhistListAPI {
     func invoke(product: Product)
@@ -38,21 +37,72 @@ final class AddProductToWhistListAPIImp {
 extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
     
     func invoke(product: Product) {
-        guard var items: Data = productsInWhisList else { return }
+        var productsToAdd: [Product] = []
+//        guard var items: Data = productsInWhisList else {
+//            do {
+//                productsToAdd.append(product)
+//                let encodedData = try JSONEncoder().encode(productsToAdd)
+//
+//                dependencies
+//                    .userDefaults
+//                    .set(encodedData, forKey: "WhistList")
+//            } catch {
+//
+//            }
+//            return
+//        }
+//
+//        if let savedData = dependencies.userDefaults.object(forKey: "WhistList") as? Data {
+//            do {
+//
+//                let savedContacts = try JSONDecoder().decode([Product].self, from: savedData)
+////                productsToAdd = try JSONDecoder().decode([Product].self, from: items)
+////                productsToAdd.append(product)
+//                let encodedData = try JSONEncoder().encode(savedContacts)
+//
+//                dependencies
+//                    .userDefaults
+//                    .set(encodedData, forKey: "WhistList")
+//            } catch {
+//                // Failed to encode Contact to Data
+//                print("Error info: \(error)")
+//            }
+//        }
         
-        do {
-            
-            var priductInWhisList: [Product] = try JSONDecoder().decode([Product].self,
-                                                                        from: items)
-            priductInWhisList.append(product)
-            
-            let encodedData = try JSONEncoder().encode(priductInWhisList)
-            
-            dependencies
-                .userDefaults
-                .set(encodedData, forKey: "WhistList")
-        } catch {
-            // Failed to encode Contact to Data
+        let whisListKey = UserDefaults.Keys.myKey
+        if !dependencies.userDefaults.valueExists(forKey: whisListKey) {
+            do {
+                productsToAdd.append(product)
+                let encodedData = try JSONEncoder().encode(productsToAdd)
+                
+                dependencies
+                    .userDefaults
+                    .set(encodedData, forKey: whisListKey)
+            } catch {
+               print(error)
+            }
+        } else {
+            if let data = UserDefaults.standard.data(forKey: whisListKey) {
+                do {
+                    // Create JSON Decoder
+                    let decoder = JSONDecoder()
+
+                    // Decode Note
+                    let notes = try decoder.decode([Product].self, from: data)
+                    
+                    productsToAdd = notes
+                    productsToAdd.append(product)
+                    
+                    let encodedData = try JSONEncoder().encode(productsToAdd)
+                    
+                    dependencies
+                        .userDefaults
+                        .set(encodedData, forKey: whisListKey)
+
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }

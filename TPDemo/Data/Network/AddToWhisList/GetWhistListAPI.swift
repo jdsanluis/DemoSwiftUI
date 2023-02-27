@@ -28,15 +28,6 @@ final class GetWhistListAPIImp {
 extension GetWhistListAPIImp: GetWhistListAPI {
     
     func invoke() -> [Product] {
-//        guard let itemsInWhisList: [Product] = dependencies
-//            .userDefaults
-//            .array(forKey: "WhistList") as? [Product] else {
-//            return []
-//        }
-        
-//        let userDefaults = UserDefaults.standard
-        // 1
-        
         var itemsInWhisList: [Product] = []
         
         if let savedData = dependencies
@@ -44,15 +35,14 @@ extension GetWhistListAPIImp: GetWhistListAPI {
             .object(forKey: "WhistList") as? Data {
 
             do{
-                // 2
                 itemsInWhisList = try JSONDecoder().decode([Product].self,
                                                              from: savedData)
 
             } catch {
                 // Failed to convert Data to Contact
+                print("Error info: \(error)")
             }
         }
-        
         return itemsInWhisList
     }
 }

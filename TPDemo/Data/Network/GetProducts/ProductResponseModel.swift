@@ -30,6 +30,7 @@ extension ProductResponseModel {
               price: price,
               image: image,
               rating: rating.rate,
-              description: description)
+              description: description,
+              isInWhisList: false)
     }
 }

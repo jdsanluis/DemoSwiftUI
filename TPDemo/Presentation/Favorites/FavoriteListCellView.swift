@@ -49,7 +49,8 @@ struct FavoriteListCellView_Previews: PreviewProvider {
                                      price: 12.4,
                                      image: "image",
                                      rating: 5.3,
-                                     description: "description")
+                                     description: "description",
+                                     isInWhisList: true)
         
         FavoriteListCellView(product: product)
     }

@@ -43,7 +43,6 @@ struct ProductListCellView: View {
                                 .gesture(
                                     TapGesture()
                                         .onEnded({
-                                            print("Tapped!"+product.name)
                                             viewModel
                                                 .addProductToWhistList(product)
                                         })
@@ -91,7 +90,8 @@ struct ProductListCellView_Previews: PreviewProvider {
                                      price: 12.4,
                                      image: "image",
                                      rating: 5.3,
-                                     description: "description")
+                                     description: "description",
+                                     isInWhisList: true)
         
         ProductListCellView(product: product)
     }
