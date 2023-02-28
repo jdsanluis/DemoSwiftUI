@@ -35,7 +35,7 @@ struct ProductListCellView: View {
                         .resizable()
                         .scaledToFit()
                         .overlay {
-                            Image(systemName: "suit.heart")
+                            Image(systemName: product.isInWhisList ? "suit.heart.fill" : "suit.heart")
                                 .font(.title3)
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
@@ -43,8 +43,7 @@ struct ProductListCellView: View {
                                 .gesture(
                                     TapGesture()
                                         .onEnded({
-                                            viewModel
-                                                .addProductToWhistList(product)
+                                            makeInput(product)
                                         })
                                 )
                         }
@@ -81,6 +80,16 @@ struct ProductListCellView: View {
         .border(.yellow)
     }
     
+    
+    private func makeInput(_ product: Product) {
+        if product.isInWhisList {
+            viewModel.deleteProductToWhistList(product)
+        } else {
+            var productAux = product
+            productAux.isInWhisList = !product.isInWhisList
+            viewModel.addProductToWhistList(product)
+        }
+    }
 }
 
 struct ProductListCellView_Previews: PreviewProvider {

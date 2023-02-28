@@ -19,6 +19,8 @@
 		C78F6E4E29AC019F000F1824 /* GetWhistListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4D29AC019F000F1824 /* GetWhistListAPI.swift */; };
 		C78F6E5029AC02F8000F1824 /* AddProductToWhisListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4F29AC02F8000F1824 /* AddProductToWhisListUseCase.swift */; };
 		C78F6E5729AC36F9000F1824 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E5629AC36F9000F1824 /* UserDefaults+Extension.swift */; };
+		C78F6E5929ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E5829ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift */; };
+		C78F6E5C29ADA165000F1824 /* DeleteProductFromWhistListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E5B29ADA165000F1824 /* DeleteProductFromWhistListAPI.swift */; };
 		C7D1BB9529A97B0D007C1C8E /* TPDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1BB9429A97B0D007C1C8E /* TPDemoApp.swift */; };
 		C7D1BB9729A97B0D007C1C8E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D1BB9629A97B0D007C1C8E /* ContentView.swift */; };
 		C7D1BB9929A97B10007C1C8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D1BB9829A97B10007C1C8E /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		C78F6E4D29AC019F000F1824 /* GetWhistListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWhistListAPI.swift; sourceTree = "<group>"; };
 		C78F6E4F29AC02F8000F1824 /* AddProductToWhisListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductToWhisListUseCase.swift; sourceTree = "<group>"; };
 		C78F6E5629AC36F9000F1824 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		C78F6E5829ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProductToWhisListUseCase.swift; sourceTree = "<group>"; };
+		C78F6E5B29ADA165000F1824 /* DeleteProductFromWhistListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProductFromWhistListAPI.swift; sourceTree = "<group>"; };
 		C7D1BB9129A97B0D007C1C8E /* TPDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D1BB9429A97B0D007C1C8E /* TPDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPDemoApp.swift; sourceTree = "<group>"; };
 		C7D1BB9629A97B0D007C1C8E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 				C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */,
 				C78F6E4B29AC00DD000F1824 /* GetWhisListUseCase.swift */,
 				C78F6E4F29AC02F8000F1824 /* AddProductToWhisListUseCase.swift */,
+				C78F6E5829ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -109,6 +114,14 @@
 				C78F6E5629AC36F9000F1824 /* UserDefaults+Extension.swift */,
 			);
 			path = AddToWhisList;
+			sourceTree = "<group>";
+		};
+		C78F6E5A29ADA147000F1824 /* DeleteFromWhisList */ = {
+			isa = PBXGroup;
+			children = (
+				C78F6E5B29ADA165000F1824 /* DeleteProductFromWhistListAPI.swift */,
+			);
+			path = DeleteFromWhisList;
 			sourceTree = "<group>";
 		};
 		C7D1BB8829A97B0D007C1C8E = {
@@ -160,6 +173,7 @@
 		C7D1BBA329A97B29007C1C8E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C78F6E5A29ADA147000F1824 /* DeleteFromWhisList */,
 				C78F6E4829ABFDD2000F1824 /* AddToWhisList */,
 				C78F6E4229ABC460000F1824 /* GetProducts */,
 			);
@@ -268,10 +282,12 @@
 				C78F6E4129ABC39F000F1824 /* GetProductsAPI.swift in Sources */,
 				C78F6E5729AC36F9000F1824 /* UserDefaults+Extension.swift in Sources */,
 				C7F9C2BD29AAEEE500C737F8 /* Product.swift in Sources */,
+				C78F6E5C29ADA165000F1824 /* DeleteProductFromWhistListAPI.swift in Sources */,
 				C78F6E3B29AB1A93000F1824 /* FavoriteListCellView.swift in Sources */,
 				C7D1BB9529A97B0D007C1C8E /* TPDemoApp.swift in Sources */,
 				C78F6E4429ABC65F000F1824 /* ProductResponseModel.swift in Sources */,
 				C78F6E4729ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift in Sources */,
+				C78F6E5929ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift in Sources */,
 				C78F6E3F29ABB98B000F1824 /* FavoriteListViewModel.swift in Sources */,
 				C78F6E3D29ABB225000F1824 /* ProductListViewModel.swift in Sources */,
 				C78F6E5029AC02F8000F1824 /* AddProductToWhisListUseCase.swift in Sources */,

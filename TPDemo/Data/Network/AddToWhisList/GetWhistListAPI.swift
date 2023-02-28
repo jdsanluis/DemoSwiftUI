@@ -39,7 +39,6 @@ extension GetWhistListAPIImp: GetWhistListAPI {
                                                              from: savedData)
 
             } catch {
-                // Failed to convert Data to Contact
                 print("Error info: \(error)")
             }
         }
