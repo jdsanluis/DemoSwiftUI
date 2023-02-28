@@ -32,7 +32,7 @@ extension DeleteProductFromWhistListAPIImp: DeleteProductFromWhistListAPI {
         
         if let savedData = dependencies
             .userDefaults
-            .object(forKey: "WhistList") as? Data {
+            .object(forKey: whisListKey) as? Data {
 
             do{
                 itemsInWhisList = try JSONDecoder().decode([Product].self,

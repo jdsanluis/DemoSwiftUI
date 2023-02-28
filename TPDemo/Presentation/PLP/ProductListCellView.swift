@@ -21,6 +21,8 @@ struct ProductListCellView: View {
             VStack {
                 HStack {
                     VStack(spacing: 15) {
+                        Spacer()
+                            .frame(height: 25)
                         Image(systemName: "plus")
                             .frame(width: 25, height: 25)
                         Image(systemName: "minus")
@@ -29,55 +31,69 @@ struct ProductListCellView: View {
                             .frame(width: 25, height: 25)
                         Spacer()
                     }
-                    .border(.gray)
-                    
-                    Image("wrongItem")
-                        .resizable()
-                        .scaledToFit()
-                        .overlay {
-                            Image(systemName: product.isInWhisList ? "suit.heart.fill" : "suit.heart")
-                                .font(.title3)
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                                .foregroundColor(.red)
-                                .gesture(
-                                    TapGesture()
-                                        .onEnded({
-                                            makeInput(product)
-                                        })
-                                )
+
+                    Spacer()
+                    HStack {
+                        AsyncImage(url: URL(string: product.image)) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
                         }
+                        .scaledToFit()
+                    }
+                    VStack(spacing: 15) {
+                        Spacer()
+                            .frame(height: 10)
+                        Image(systemName: product.isInWhisList ? "suit.heart.fill" : "suit.heart")
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.red)
+                            .gesture(
+                                TapGesture()
+                                    .onEnded({
+                                        makeInput(product)
+                                    })
+                            )
+                        Spacer()
+                    }
                 }
-                .border(.green)
             }
-            .border(.black)
             
             VStack(spacing: 5 ) {
                 Text(product.description)
                     .frame(maxWidth: .infinity)
-                    .border(.green)
+                    .lineLimit(2)
+
                 HStack {
                     Text("$"+product.price.description)
                         .frame(maxWidth: .infinity,
                                alignment: .leading)
-                        .border(.pink)
                     
                     HStack {
                         Text("4.1 *")
                             .frame(maxWidth: .infinity,
                                    alignment: .trailing)
-                            .border(.blue)
+
                         Image(systemName: "star.fill")
                             .frame(width: 15, height: 15)
                     }
                     
                 }
-                .border(.red)
             }
-            .border(.red)
         }
         .frame(width: 185, height: 240)
-        .border(.yellow)
+        .background(
+                Rectangle()
+                    .fill(Color.white)
+                    .cornerRadius(8)
+                    .shadow(
+                        color: Color.gray.opacity(0.7),
+                        radius: 8,
+                        x: 0,
+                        y: 0
+                    )
+            )
     }
     
     

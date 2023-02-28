@@ -29,10 +29,10 @@ extension GetWhistListAPIImp: GetWhistListAPI {
     
     func invoke() -> [Product] {
         var itemsInWhisList: [Product] = []
-        
+        let whisListKey = UserDefaults.Keys.myKey
         if let savedData = dependencies
             .userDefaults
-            .object(forKey: "WhistList") as? Data {
+            .object(forKey: whisListKey) as? Data {
 
             do{
                 itemsInWhisList = try JSONDecoder().decode([Product].self,
