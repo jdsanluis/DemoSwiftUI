@@ -13,7 +13,7 @@
 		C78F6E3F29ABB98B000F1824 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E3E29ABB98B000F1824 /* FavoriteListViewModel.swift */; };
 		C78F6E4129ABC39F000F1824 /* GetProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4029ABC39F000F1824 /* GetProductsAPI.swift */; };
 		C78F6E4429ABC65F000F1824 /* ProductResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4329ABC65F000F1824 /* ProductResponseModel.swift */; };
-		C78F6E4729ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */; };
+		C78F6E4729ABCD79000F1824 /* GetProductsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4629ABCD79000F1824 /* GetProductsUseCase.swift */; };
 		C78F6E4A29ABFDEE000F1824 /* AddProductToWhistListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4929ABFDEE000F1824 /* AddProductToWhistListAPI.swift */; };
 		C78F6E4C29AC00DD000F1824 /* GetWhisListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4B29AC00DD000F1824 /* GetWhisListUseCase.swift */; };
 		C78F6E4E29AC019F000F1824 /* GetWhistListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F6E4D29AC019F000F1824 /* GetWhistListAPI.swift */; };
@@ -37,7 +37,7 @@
 		C78F6E3E29ABB98B000F1824 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
 		C78F6E4029ABC39F000F1824 /* GetProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductsAPI.swift; sourceTree = "<group>"; };
 		C78F6E4329ABC65F000F1824 /* ProductResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponseModel.swift; sourceTree = "<group>"; };
-		C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductsUseCaseGetProductUseCase.swift; sourceTree = "<group>"; };
+		C78F6E4629ABCD79000F1824 /* GetProductsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductsUseCase.swift; sourceTree = "<group>"; };
 		C78F6E4929ABFDEE000F1824 /* AddProductToWhistListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductToWhistListAPI.swift; sourceTree = "<group>"; };
 		C78F6E4B29AC00DD000F1824 /* GetWhisListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWhisListUseCase.swift; sourceTree = "<group>"; };
 		C78F6E4D29AC019F000F1824 /* GetWhistListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWhistListAPI.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		C78F6E4529ABCD52000F1824 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				C78F6E4629ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift */,
+				C78F6E4629ABCD79000F1824 /* GetProductsUseCase.swift */,
 				C78F6E4B29AC00DD000F1824 /* GetWhisListUseCase.swift */,
 				C78F6E4F29AC02F8000F1824 /* AddProductToWhisListUseCase.swift */,
 				C78F6E5829ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift */,
@@ -110,8 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				C78F6E4929ABFDEE000F1824 /* AddProductToWhistListAPI.swift */,
-				C78F6E4D29AC019F000F1824 /* GetWhistListAPI.swift */,
-				C78F6E5629AC36F9000F1824 /* UserDefaults+Extension.swift */,
 			);
 			path = AddToWhisList;
 			sourceTree = "<group>";
@@ -122,6 +120,15 @@
 				C78F6E5B29ADA165000F1824 /* DeleteProductFromWhistListAPI.swift */,
 			);
 			path = DeleteFromWhisList;
+			sourceTree = "<group>";
+		};
+		C78F6E5D29ADBC86000F1824 /* GetWhisList */ = {
+			isa = PBXGroup;
+			children = (
+				C78F6E4D29AC019F000F1824 /* GetWhistListAPI.swift */,
+				C78F6E5629AC36F9000F1824 /* UserDefaults+Extension.swift */,
+			);
+			path = GetWhisList;
 			sourceTree = "<group>";
 		};
 		C7D1BB8829A97B0D007C1C8E = {
@@ -170,14 +177,15 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		C7D1BBA329A97B29007C1C8E /* Network */ = {
+		C7D1BBA329A97B29007C1C8E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C78F6E5D29ADBC86000F1824 /* GetWhisList */,
 				C78F6E5A29ADA147000F1824 /* DeleteFromWhisList */,
 				C78F6E4829ABFDD2000F1824 /* AddToWhisList */,
 				C78F6E4229ABC460000F1824 /* GetProducts */,
 			);
-			path = Network;
+			path = API;
 			sourceTree = "<group>";
 		};
 		C7D1BBA429A97B30007C1C8E /* Presentation */ = {
@@ -192,7 +200,7 @@
 		C7F9C2BE29AAEF2C00C737F8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C7D1BBA329A97B29007C1C8E /* Network */,
+				C7D1BBA329A97B29007C1C8E /* API */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -286,7 +294,7 @@
 				C78F6E3B29AB1A93000F1824 /* FavoriteListCellView.swift in Sources */,
 				C7D1BB9529A97B0D007C1C8E /* TPDemoApp.swift in Sources */,
 				C78F6E4429ABC65F000F1824 /* ProductResponseModel.swift in Sources */,
-				C78F6E4729ABCD79000F1824 /* GetProductsUseCaseGetProductUseCase.swift in Sources */,
+				C78F6E4729ABCD79000F1824 /* GetProductsUseCase.swift in Sources */,
 				C78F6E5929ADA0BC000F1824 /* DeleteProductToWhisListUseCase.swift in Sources */,
 				C78F6E3F29ABB98B000F1824 /* FavoriteListViewModel.swift in Sources */,
 				C78F6E3D29ABB225000F1824 /* ProductListViewModel.swift in Sources */,

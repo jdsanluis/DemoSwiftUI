@@ -21,7 +21,6 @@ final class ProductListViewModel: ObservableObject {
     
     init(dependencies: Dependencies = .init()) {
         self.dependencies = dependencies
-        getProducts()
     }
     
     func getProducts() {

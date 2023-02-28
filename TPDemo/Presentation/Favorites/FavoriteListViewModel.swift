@@ -20,7 +20,6 @@ final class FavoriteListViewModel: ObservableObject {
     
     init(dependencies: Dependencies = .init()) {
         self.dependencies = dependencies
-        getWhisList()
     }
     
     func getWhisList() {
