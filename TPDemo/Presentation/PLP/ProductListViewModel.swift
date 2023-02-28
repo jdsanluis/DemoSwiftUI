@@ -16,6 +16,7 @@ final class ProductListViewModel: ObservableObject {
     }
     
     @Published var products: [Product] = []
+    @Published var toast: FancyToast?
     
     let dependencies: Dependencies
     
@@ -36,6 +37,8 @@ final class ProductListViewModel: ObservableObject {
             .addProductToWhisListUseCase
             .invoke(product: product )
         
+        toast = FancyToast(type: .success,
+                           message: "Se agrego")
         getProducts()
     }
     
