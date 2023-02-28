@@ -10,7 +10,6 @@ import SwiftUI
 struct ProductsListView: View {
     
     @StateObject var viewModel = ProductListViewModel()
-//    @State private var toast: FancyToast? = nil
     
     private let columns = [
         GridItem(.flexible()),
@@ -34,23 +33,9 @@ struct ProductsListView: View {
                                    for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
             }.onAppear {
-//                viewModel.getProducts()
-                setup()
+                viewModel.getProducts()
             }
         }.toastView(toast: $viewModel.toast)
-    }
-    
-    private func setup() {
-        viewModel.getProducts()
-//        toast = FancyToast(type: .info,
-//                           title: "Toast info",
-//                           message: "Toast message")
-    }
-}
-
-extension View {
-    func toastView(toast: Binding<FancyToast?>) -> some View {
-        self.modifier(FancyToastModifier(toast: toast))
     }
 }
 

@@ -37,6 +37,12 @@ struct FancyToastView: View {
     }
 }
 
+extension View {
+    func toastView(toast: Binding<FancyToast?>) -> some View {
+        self.modifier(FancyToastModifier(toast: toast))
+    }
+}
+
 struct FancyToastView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
