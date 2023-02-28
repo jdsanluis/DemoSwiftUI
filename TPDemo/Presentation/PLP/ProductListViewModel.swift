@@ -27,25 +27,41 @@ final class ProductListViewModel: ObservableObject {
     func getProducts() {
         dependencies
             .getProductsUseCase
-            .invoke(completion: { products in
-                self.products = products
+            .invoke(completion: { [weak self] products in
+                self?.products = products
             })
     }
     
     func addProductToWhistList(_ product: Product) {
         dependencies
             .addProductToWhisListUseCase
-            .invoke(product: product )
-        
-        toast = FancyToast(type: .success,
-                           message: "Se agrego")
+            .invoke(product: product, completion: { [weak self] isProductAdded in
+                
+                guard isProductAdded else {
+                    self?.toast = FancyToast(type: .success,
+                                             message: "Try again later.!!")
+                    return
+                }
+                self?.toast = FancyToast(type: .success,
+                                         message: "Product added to WhisList")
+            })
+
         getProducts()
     }
     
     func deleteProductToWhistList(_ product: Product) {
         dependencies
             .deleteProductToWhisListUseCase
-            .invoke(product: product)
+            .invoke(product: product, completion: { [weak self] isProductDeleted in
+                
+                guard isProductDeleted else {
+                    self?.toast = FancyToast(type: .success,
+                                             message: "Try again later.!!")
+                    return
+                }
+                self?.toast = FancyToast(type: .success,
+                                         message: "Product deleted")
+            })
         
         getProducts()
     }

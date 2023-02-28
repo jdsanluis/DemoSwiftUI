@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AddProductToWhistListAPI {
-    func invoke(product: Product)
+    func invoke(product: Product, completion: @escaping ((Bool) -> ()))
 }
 
 final class AddProductToWhistListAPIImp {
@@ -26,7 +26,7 @@ final class AddProductToWhistListAPIImp {
 
 extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
     
-    func invoke(product: Product) {
+    func invoke(product: Product, completion: @escaping ((Bool) -> ())) {
         var productsToAdd: [Product] = []
         
         let whisListKey = UserDefaults.Keys.myKey
@@ -38,8 +38,10 @@ extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
                 dependencies
                     .userDefaults
                     .set(encodedData, forKey: whisListKey)
+                completion(true)
             } catch {
                print(error)
+                completion(false)
             }
         } else {
             if let data = UserDefaults.standard.data(forKey: whisListKey) {
@@ -58,9 +60,10 @@ extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
                     dependencies
                         .userDefaults
                         .set(encodedData, forKey: whisListKey)
-
+                    completion(true)
                 } catch {
                     print(error)
+                    completion(false)
                 }
             }
         }

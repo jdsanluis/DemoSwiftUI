@@ -15,6 +15,7 @@ final class FavoriteListViewModel: ObservableObject {
     }
     
     @Published var products: [Product] = []
+    @Published var toast: FancyToast?
     
     let dependencies: Dependencies
     
@@ -31,7 +32,17 @@ final class FavoriteListViewModel: ObservableObject {
     func deleteProductToWhistList(_ product: Product) {
         dependencies
             .deleteProductToWhisListUseCase
-            .invoke(product: product)
+            .invoke(product: product, completion: { [weak self] isProductDeleted in
+                
+                guard isProductDeleted else {
+                    self?.toast = FancyToast(type: .success,
+                                             message: "Try again later.!!")
+                    return
+                }
+                self?.toast = FancyToast(type: .success,
+                                         message: "Product deleted")
+                
+            })
         
         getWhisList()
     }

@@ -29,7 +29,7 @@ struct FavoritesListView: View {
             .toolbarBackground(.visible, for: .navigationBar)
         }.onAppear {
             viewModel.getWhisList()
-        }
+        }.toastView(toast: $viewModel.toast)
     }
 }
 

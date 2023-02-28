@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AddProductToWhisListUseCase {
-    func invoke(product: Product)
+    func invoke(product: Product, completion: @escaping ((Bool) -> ()))
 }
 
 final class AddProductToWhisListUseCaseImp {
@@ -26,9 +26,11 @@ final class AddProductToWhisListUseCaseImp {
 
 extension AddProductToWhisListUseCaseImp: AddProductToWhisListUseCase {
     
-    func invoke(product: Product) {
+    func invoke(product: Product, completion: @escaping ((Bool) -> ())) {
         dependencies
             .addProductToWhistListAPI
-            .invoke(product: product)
+            .invoke(product: product, completion: { isProductAdded in
+                completion(isProductAdded)
+            })
     }
 }

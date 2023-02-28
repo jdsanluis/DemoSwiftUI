@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DeleteProductFromWhistListAPI {
-    func invoke(product: Product)
+    func invoke(product: Product, completion: @escaping((Bool) -> ()))
 }
 
 final class DeleteProductFromWhistListAPIImp {
@@ -26,7 +26,7 @@ final class DeleteProductFromWhistListAPIImp {
 
 extension DeleteProductFromWhistListAPIImp: DeleteProductFromWhistListAPI {
     
-    func invoke(product: Product) {
+    func invoke(product: Product, completion: @escaping((Bool) -> ())) {
         let whisListKey = UserDefaults.Keys.myKey
         var itemsInWhisList: [Product] = []
         
@@ -40,6 +40,7 @@ extension DeleteProductFromWhistListAPIImp: DeleteProductFromWhistListAPI {
 
             } catch {
                 print("Error info: \(error)")
+                completion(false)
             }
         }
         
@@ -51,8 +52,9 @@ extension DeleteProductFromWhistListAPIImp: DeleteProductFromWhistListAPI {
             dependencies
                 .userDefaults
                 .set(encodedData, forKey: whisListKey)
+            completion(true)
         } catch {
-            print(error)
+            completion(false)
         }
     }
 }
