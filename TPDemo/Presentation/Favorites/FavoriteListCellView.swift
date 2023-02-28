@@ -18,13 +18,17 @@ struct FavoriteListCellView: View {
     var body: some View {
         HStack{
             VStack {
-                Image("wrongItem")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
+                AsyncImage(url: URL(string: product.image)) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                .scaledToFit()
             }
             .frame(width: 100)
             .padding()
-            .border(.red)
             
             VStack{
                 Text(product.description)
@@ -37,8 +41,7 @@ struct FavoriteListCellView: View {
                 }
             }
         }
-        .frame(height: 140)
-        .border(.green)
+        .frame(height: 130)
     }
 }
 

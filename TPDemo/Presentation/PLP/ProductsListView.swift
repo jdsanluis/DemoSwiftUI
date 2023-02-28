@@ -17,15 +17,22 @@ struct ProductsListView: View {
     ]
     
     var body: some View {
-        NavigationStack{
+        NavigationStack(){
             ScrollView{
+                Spacer().frame(height: 10)
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(viewModel.products, id: \.self) { product in
                         ProductListCellView(product: product)
                             .environmentObject(viewModel)
                     }
                 }
-            }.navigationTitle(Text("Fake Store"))
+            }
+            .navigationTitle(Text("Fake Store"))
+            .toolbarBackground(Color.pink,
+                               for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+        }.onAppear {
+            viewModel.getProducts()
         }
         
     }
