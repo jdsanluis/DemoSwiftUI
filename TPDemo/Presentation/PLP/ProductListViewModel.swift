@@ -24,7 +24,7 @@ final class ProductListViewModel: ObservableObject {
         getProducts()
     }
     
-    private func getProducts() {
+    func getProducts() {
         dependencies
             .getProductsUseCase
             .invoke(completion: { products in

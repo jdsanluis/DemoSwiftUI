@@ -11,6 +11,7 @@ final class FavoriteListViewModel: ObservableObject {
     
     struct Dependencies {
         let getWhisListUseCase: GetWhisListUseCase = GetWhisListUseCaseImp()
+        let deleteProductToWhisListUseCase: DeleteProductToWhisListUseCase = DeleteProductToWhisListUseCaseImp()
     }
     
     @Published var products: [Product] = []
@@ -26,5 +27,13 @@ final class FavoriteListViewModel: ObservableObject {
         products = dependencies
             .getWhisListUseCase
             .invoke()
+    }
+    
+    func deleteProductToWhistList(_ product: Product) {
+        dependencies
+            .deleteProductToWhisListUseCase
+            .invoke(product: product)
+        
+        getWhisList()
     }
 }
