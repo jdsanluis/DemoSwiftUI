@@ -35,15 +35,8 @@ final class ProductListViewModel: ObservableObject {
     func addProductToWhistList(_ product: Product) {
         dependencies
             .addProductToWhisListUseCase
-            .invoke(product: product, completion: { [weak self] isProductAdded in
-                
-                if isProductAdded {
-                    self?.toast = FancyToast(type: .success,
-                                             message: "Product added to WhisList")
-                } else {
-                    self?.toast = FancyToast(type: .success,
-                                             message: "Try again later.!!")
-                }
+            .invoke(product: product, completion: { [weak self] toastResult in
+                self?.toast = toastResult
             })
 
         getProducts()
@@ -52,15 +45,8 @@ final class ProductListViewModel: ObservableObject {
     func deleteProductToWhistList(_ product: Product) {
         dependencies
             .deleteProductToWhisListUseCase
-            .invoke(product: product, completion: { [weak self] isProductDeleted in
-                
-                if isProductDeleted {
-                    self?.toast = FancyToast(type: .success,
-                                             message: "Product deleted")
-                } else {
-                    self?.toast = FancyToast(type: .success,
-                                             message: "Try again later.!!")
-                }
+            .invoke(product: product, completion: { [weak self] toastResult in
+                self?.toast = toastResult
             })
         
         getProducts()

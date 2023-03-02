@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DeleteProductToWhisListUseCase {
-    func invoke(product: Product, completion: @escaping((Bool) -> ()))
+    func invoke(product: Product, completion: @escaping((FancyToast?) -> ()))
 }
 
 final class DeleteProductToWhisListUseCaseImp {
@@ -26,12 +26,20 @@ final class DeleteProductToWhisListUseCaseImp {
 
 extension DeleteProductToWhisListUseCaseImp: DeleteProductToWhisListUseCase {
     
-    func invoke(product: Product, completion: @escaping((Bool) -> ())) {
+    func invoke(product: Product, completion: @escaping((FancyToast?) -> ())) {
+        var toast: FancyToast?
         dependencies
             .deleteProductFromWhistListAPI
             .invoke(product: product,
-                    completion: { isProductAdded in
-                completion(isProductAdded)
+                    completion: { isProductDeleted in
+                if isProductDeleted {
+                    toast = FancyToast(type: .success,
+                                             message: "Product deleted")
+                } else {
+                    toast = FancyToast(type: .success,
+                                             message: "Try again later.!!")
+                }
+                completion(toast)
             })
     }
 }

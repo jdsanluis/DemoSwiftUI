@@ -32,15 +32,8 @@ final class FavoriteListViewModel: ObservableObject {
     func deleteProductToWhistList(_ product: Product) {
         dependencies
             .deleteProductToWhisListUseCase
-            .invoke(product: product, completion: { [weak self] isProductDeleted in
-                
-                if isProductDeleted {
-                    self?.toast = FancyToast(type: .success,
-                                             message: "Product deleted")
-                } else {
-                    self?.toast = FancyToast(type: .success,
-                                             message: "Try again later.!!")
-                }
+            .invoke(product: product, completion: { [weak self] toastResult in
+                self?.toast = toastResult
             })
         
         getWhisList()
