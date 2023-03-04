@@ -19,13 +19,6 @@ extension FancyToastStyle {
         case .success: return Color.blue
         }
     }
-    
-    var iconFileName: String {
-        switch self {
-        case .success: return "checkmark.circle.fill"
-        case .error: return "xmark.circle.fill"
-        }
-    }
 }
 
 struct FancyToast: Equatable {
