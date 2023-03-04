@@ -15,6 +15,7 @@ final class GetProductsUseCaseImp {
     
     struct Dependencies {
         let getProductsAPI: GetProductsAPI = GetProductsAPIImp()
+        let getWhistListAPI: GetWhistListAPI = GetWhistListAPIImp()
     }
     
     let dependencies: Dependencies
@@ -27,10 +28,22 @@ final class GetProductsUseCaseImp {
 extension GetProductsUseCaseImp: GetProductsUseCase {
     
     func invoke(completion: @escaping (([Product]) -> ()))  {
+        let whisList = dependencies.getWhistListAPI.invoke()
+        
         dependencies
             .getProductsAPI
             .invoke(completion: { products in
-                completion(products.map{ $0.mapToProduct() })
+                var productInStore: [Product] = products.map{ $0.mapToProduct()}
+                
+                for i in 0..<productInStore.count {
+                    for item in whisList {
+                        if productInStore[i].id == item.id {
+                            productInStore[i].isInWhisList = true
+                            continue
+                        }
+                    }
+                }
+                completion(productInStore)
             })
     }
 }

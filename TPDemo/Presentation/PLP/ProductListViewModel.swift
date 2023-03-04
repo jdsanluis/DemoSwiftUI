@@ -12,28 +12,43 @@ final class ProductListViewModel: ObservableObject {
     struct Dependencies {
         let getProductsUseCase: GetProductsUseCase = GetProductsUseCaseImp()
         let addProductToWhisListUseCase: AddProductToWhisListUseCase = AddProductToWhisListUseCaseImp()
+        let deleteProductToWhisListUseCase: DeleteProductToWhisListUseCase = DeleteProductToWhisListUseCaseImp()
     }
     
     @Published var products: [Product] = []
+    @Published var toast: FancyToast?
     
     let dependencies: Dependencies
     
     init(dependencies: Dependencies = .init()) {
         self.dependencies = dependencies
-        getProducts()
     }
     
-    private func getProducts() {
+    func getProducts() {
         dependencies
             .getProductsUseCase
-            .invoke(completion: { products in
-                self.products = products
+            .invoke(completion: { [weak self] products in
+                self?.products = products
             })
     }
     
     func addProductToWhistList(_ product: Product) {
         dependencies
             .addProductToWhisListUseCase
-            .invoke(product: product )
+            .invoke(product: product, completion: { [weak self] toastResult in
+                self?.toast = toastResult
+            })
+
+        getProducts()
+    }
+    
+    func deleteProductToWhistList(_ product: Product) {
+        dependencies
+            .deleteProductToWhisListUseCase
+            .invoke(product: product, completion: { [weak self] toastResult in
+                self?.toast = toastResult
+            })
+        
+        getProducts()
     }
 }

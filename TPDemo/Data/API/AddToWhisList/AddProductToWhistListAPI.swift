@@ -8,23 +8,13 @@
 import Foundation
 
 protocol AddProductToWhistListAPI {
-    func invoke(product: Product)
+    func invoke(product: Product, completion: @escaping ((Bool) -> ()))
 }
 
 final class AddProductToWhistListAPIImp {
     
     struct Dependencies {
         let userDefaults = UserDefaults.standard
-    }
-    
-    var productsInWhisList: Data? {
-        guard let itemsInWhisList: Data = dependencies
-            .userDefaults
-            .object(forKey: "WhistList") as? Data else {
-            return nil
-        }
-        
-        return itemsInWhisList
     }
     
     let dependencies: Dependencies
@@ -36,38 +26,8 @@ final class AddProductToWhistListAPIImp {
 
 extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
     
-    func invoke(product: Product) {
+    func invoke(product: Product, completion: @escaping ((Bool) -> ())) {
         var productsToAdd: [Product] = []
-//        guard var items: Data = productsInWhisList else {
-//            do {
-//                productsToAdd.append(product)
-//                let encodedData = try JSONEncoder().encode(productsToAdd)
-//
-//                dependencies
-//                    .userDefaults
-//                    .set(encodedData, forKey: "WhistList")
-//            } catch {
-//
-//            }
-//            return
-//        }
-//
-//        if let savedData = dependencies.userDefaults.object(forKey: "WhistList") as? Data {
-//            do {
-//
-//                let savedContacts = try JSONDecoder().decode([Product].self, from: savedData)
-////                productsToAdd = try JSONDecoder().decode([Product].self, from: items)
-////                productsToAdd.append(product)
-//                let encodedData = try JSONEncoder().encode(savedContacts)
-//
-//                dependencies
-//                    .userDefaults
-//                    .set(encodedData, forKey: "WhistList")
-//            } catch {
-//                // Failed to encode Contact to Data
-//                print("Error info: \(error)")
-//            }
-//        }
         
         let whisListKey = UserDefaults.Keys.myKey
         if !dependencies.userDefaults.valueExists(forKey: whisListKey) {
@@ -78,8 +38,10 @@ extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
                 dependencies
                     .userDefaults
                     .set(encodedData, forKey: whisListKey)
+                completion(true)
             } catch {
                print(error)
+                completion(false)
             }
         } else {
             if let data = UserDefaults.standard.data(forKey: whisListKey) {
@@ -98,9 +60,10 @@ extension AddProductToWhistListAPIImp: AddProductToWhistListAPI {
                     dependencies
                         .userDefaults
                         .set(encodedData, forKey: whisListKey)
-
+                    completion(true)
                 } catch {
                     print(error)
+                    completion(false)
                 }
             }
         }

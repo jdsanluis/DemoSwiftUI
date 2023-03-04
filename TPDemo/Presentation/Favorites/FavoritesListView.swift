@@ -15,10 +15,21 @@ struct FavoritesListView: View {
         NavigationStack(){
             List(viewModel.products) { product in
                 FavoriteListCellView(product: product)
-            }.navigationTitle(Text("Whis List"))
+                    .swipeActions(content: {
+                        Button(role: .destructive, action: {
+                            viewModel.deleteProductToWhistList(product)
+                        }, label: {
+                            Image(systemName: "trash")
+                        })
+                    })
+            }
+            .navigationTitle(Text("Whis List"))
+            .toolbarBackground(Color.pink,
+                               for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }.onAppear {
             viewModel.getWhisList()
-        }
+        }.toastView(toast: $viewModel.toast)
     }
 }
 
